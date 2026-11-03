@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Assistant - Setup</title>
+<style>
+:root{--bg1:#eef2ff;--bg2:#f8fafc;--card:#fff;--text:#0f172a;--muted:#475569;--line:#e2e8f0;--accent:#4f46e5;--accent2:#7c3aed;--accent-text:#fff;--ok:#047857;--err:#b91c1c;--errbg:#fef2f2;--sel:#eef2ff;--shadow:0 20px 50px -20px rgba(30,41,59,.25)}
+@media (prefers-color-scheme:dark){:root{--bg1:#1e1b4b;--bg2:#0b1020;--card:#131a2e;--text:#e8ecf5;--muted:#a3adc2;--line:#2a3350;--accent:#8b8bff;--accent2:#a78bfa;--accent-text:#0b1020;--ok:#34d399;--err:#fca5a5;--errbg:#3a1618;--sel:#1d2347;--shadow:0 20px 50px -20px rgba(0,0,0,.6)}}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--text);background:linear-gradient(135deg,var(--bg1),var(--bg2))}
+.card{width:100%;max-width:560px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:32px;box-shadow:var(--shadow)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.15rem;letter-spacing:-.01em}
+.brand svg{width:32px;height:32px}
+h1{font-size:1.5rem;margin:20px 0 6px;letter-spacing:-.02em}
+p.lead{margin:0 0 20px;color:var(--muted);line-height:1.5}
+ol.steps{display:flex;list-style:none;padding:0;margin:20px 0 0;gap:8px}
+.steps li{flex:1;font-size:.8rem;color:var(--muted);border-top:3px solid var(--line);padding-top:8px;transition:border-color .3s,color .3s}
+.steps li.done,.steps li.active{border-color:var(--accent);color:var(--text)}
+.steps li.active{font-weight:600}
+fieldset{border:0;padding:0;margin:0}
+.opt{position:relative;display:block;cursor:pointer}
+.opt input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.opt .box{display:block;border:2px solid var(--line);border-radius:14px;padding:16px;transition:border-color .2s,background .2s}
+.opt input:checked+.box{border-color:var(--accent);background:var(--sel)}
+.opt input:focus-visible+.box{outline:3px solid var(--accent);outline-offset:2px}
+.opt .t{display:flex;justify-content:space-between;align-items:center;font-weight:600}
+.opt .d{display:block;color:var(--muted);font-size:.9rem;margin-top:4px}
+.badge{font-size:.72rem;font-weight:600;background:linear-gradient(90deg,var(--accent),var(--accent2));color:var(--accent-text);padding:3px 9px;border-radius:999px;margin-left:8px}
+.size{color:var(--muted);font-weight:500;font-size:.9rem}
+button{font:inherit;cursor:pointer;border:0;border-radius:12px;padding:14px 20px;font-weight:600;color:var(--accent-text);background:linear-gradient(90deg,var(--accent),var(--accent2));transition:transform .15s,opacity .2s}
+button.primary{width:100%;margin-top:20px;font-size:1rem}
+button:hover{transform:translateY(-1px)}
+button:focus-visible{outline:3px solid var(--text);outline-offset:3px}
+.bar{height:12px;background:var(--line);border-radius:999px;overflow:hidden;margin:18px 0 10px}
+.bar>div{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:999px;transition:width .5s ease}
+.stats{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;color:var(--muted);font-size:.9rem;font-variant-numeric:tabular-nums}
+.pct{font-size:2.2rem;font-weight:700;letter-spacing:-.02em}
+.center{text-align:center;padding:12px 0}
+.spinner{width:44px;height:44px;margin:0 auto 14px;border:4px solid var(--line);border-top-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite}
+.check{width:64px;height:64px;margin:0 auto 12px;color:var(--ok);display:block}
+.check circle,.check path{fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.check path{stroke-dasharray:40;stroke-dashoffset:40;animation:draw .6s .2s ease forwards}
+.err{background:var(--errbg);color:var(--err);border-radius:12px;padding:14px 16px;display:flex;gap:10px;align-items:flex-start;line-height:1.45;margin-top:20px}
+.err svg{flex:none;width:22px;height:22px}
+code{background:var(--sel);padding:2px 8px;border-radius:6px}
+.sr{position:absolute;left:-9999px}
+[hidden]{display:none!important}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media (max-width:480px){.card{padding:22px}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<main class="card">
+  <div class="brand">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f46e5"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs><rect width="32" height="32" rx="9" fill="url(#g)"/><path d="M9 21l5-10 5 10M11 18h6M23 11v10" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    AI Assistant
+  </div>
+  <ol class="steps" aria-label="Setup progress">
+    <li id="s1" class="active">1. Choose model</li><li id="s2">2. Download</li><li id="s3">3. Start</li>
+  </ol>
+
+  <section id="choose">
+    <h1>Let's get you set up</h1>
+    <p class="lead">The assistant runs entirely on this computer. It needs a one-time download.</p>
+    <form id="form">
+      <fieldset><legend class="sr">Choose a model</legend><div id="options" style="display:grid;gap:12px"></div></fieldset>
+      <button class="primary" type="submit" id="go">Download &amp; start</button>
+    </form>
+  </section>
+
+  <section id="progress" hidden>
+    <h1>Downloading</h1>
+    <p class="lead">Keep this window open. This can take a few minutes.</p>
+    <div class="pct" id="pct">0%</div>
+    <div class="bar" role="progressbar" aria-label="Download progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="bar"><div id="fill"></div></div>
+    <div class="stats"><span id="mb">0 / 0 MB</span><span id="speed"></span><span id="eta"></span></div>
+  </section>
+
+  <section id="loading" class="center" hidden>
+    <div class="spinner" aria-hidden="true"></div>
+    <h1>Starting the assistant</h1>
+    <p class="lead">Loading the model. This may take a minute.</p>
+  </section>
+
+  <section id="ready" class="center" hidden>
+    <svg class="check" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="28"/><path d="M20 33l9 9 16-18"/></svg>
+    <h1>Ready</h1>
+    <p class="lead">The assistant is running at <code id="addr">http://127.0.0.1:7071</code></p>
+    <p class="lead">Keep the terminal window open. Close it to stop the assistant.</p>
+  </section>
+
+  <section id="error" hidden>
+    <div class="err" role="alert"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 7v6M12 17h.01"/></svg><span id="errmsg"></span></div>
+    <button class="primary" id="retry" type="button">Retry</button>
+  </section>
+
+  <div id="live" class="sr" aria-live="polite"></div>
+</main>
+<script>
+const $ = (id) => document.getElementById(id);
+const panels = ['choose', 'progress', 'loading', 'ready', 'error'];
+let chosen = 'standard', timer = null, lastState = '';
+
+function show(name) { panels.forEach((p) => { $(p).hidden = p !== name; }); }
+function steps(n) { [1, 2, 3].forEach((i) => { $('s' + i).className = i < n ? 'done' : i === n ? 'active' : ''; }); }
+function fmtEta(s) {
+  if (s == null) return 'calculating...';
+  if (s < 60) return s + ' sec left';
+  return Math.ceil(s / 60) + ' min left';
+}
+
+async function loadModels() {
+  const { models } = await (await fetch('/api/models')).json();
+  $('options').textContent = '';
+  for (const m of models) {
+    const l = document.createElement('label');
+    l.className = 'opt';
+    const size = m.approxMB >= 1000 ? (m.approxMB / 1000).toFixed(1) + ' GB' : m.approxMB + ' MB';
+    l.innerHTML = '<input type="radio" name="model" value="' + m.id + '"' + (m.id === chosen ? ' checked' : '') +
+      '><span class="box"><span class="t"><span>' + m.label + (m.recommended ? '<span class="badge">Recommended</span>' : '') +
+      '</span><span class="size">' + size + '</span></span><span class="d">' + m.description + '</span></span>';
+    l.querySelector('input').addEventListener('change', () => { chosen = m.id; });
+    $('options').appendChild(l);
+  }
+}
+
+async function start() {
+  await fetch('/api/download', { method: 'POST', body: JSON.stringify({ id: chosen }) });
+  poll();
+}
+
+function poll() {
+  clearInterval(timer);
+  timer = setInterval(tick, 500);
+  tick();
+}
+
+async function tick() {
+  let s;
+  try { s = await (await fetch('/api/progress')).json(); } catch { return; }
+  if (s.state === 'downloading') {
+    show('progress'); steps(2);
+    $('pct').textContent = s.percent + '%';
+    $('fill').style.width = s.percent + '%';
+    $('bar').setAttribute('aria-valuenow', s.percent);
+    $('mb').textContent = Math.round(s.receivedMB) + ' / ' + Math.round(s.totalMB) + ' MB';
+    $('speed').textContent = s.speedMBps.toFixed(1) + ' MB/s';
+    $('eta').textContent = fmtEta(s.etaSeconds);
+  } else if (s.state === 'loading') { show('loading'); steps(3); }
+  else if (s.state === 'ready') { clearInterval(timer); show('ready'); steps(4); $('addr').textContent = s.url; }
+  else if (s.state === 'error') { clearInterval(timer); show('error'); $('errmsg').textContent = s.message; }
+  if (s.state !== lastState) {
+    lastState = s.state;
+    $('live').textContent = s.state === 'error' ? s.message : s.state === 'ready' ? 'Ready' : s.state;
+  }
+}
+
+$('form').addEventListener('submit', (e) => { e.preventDefault(); start(); });
+$('retry').addEventListener('click', start);
+loadModels().then(() => fetch('/api/progress').then((r) => r.json()).then((s) => { if (s.state !== 'idle') poll(); }));
+</script>
+</body>
+</html>

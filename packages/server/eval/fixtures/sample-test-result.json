@@ -1,0 +1,23 @@
+{
+  "app": "CommonUI",
+  "folder": "D:\\repos\\CommonUI",
+  "tests": { "total": 1067, "passed": 1060, "failed": 7 },
+  "coverage": {
+    "lines": { "covered": 4285, "total": 5731, "pct": 74.8 },
+    "statements": { "covered": 4402, "total": 5987, "pct": 73.5 },
+    "branches": { "covered": 1710, "total": 2563, "pct": 66.7 }
+  },
+  "failedTestFiles": [
+    "src/components/Grid/Grid.test.js",
+    "src/utils/dateFormat.test.js",
+    "src/hooks/useDebounce.test.js"
+  ],
+  "lowestCoverageFiles": [
+    { "file": "src/legacy/oldExporter.js", "linesPct": 3.2 },
+    { "file": "src/components/Grid/GridToolbar.js", "linesPct": 11.5 },
+    { "file": "src/services/telemetry.js", "linesPct": 18.9 },
+    { "file": "src/utils/dateFormat.js", "linesPct": 24.0 },
+    { "file": "src/hooks/useDebounce.js", "linesPct": 31.7 }
+  ],
+  "message": "1060 of 1067 tests passed; line coverage 74.8%."
+}

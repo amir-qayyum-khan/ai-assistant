@@ -1,0 +1,10 @@
+host: 127.0.0.1
+port: 7071
+model:
+  file: models/Qwen3-1.7B-Q4_K_M.gguf
+  contextSize: 4096
+  gpu: auto        # auto | false
+session:
+  idleTtlMinutes: 120
+auth:
+  enabled: false   # reserved for future shared-server mode

@@ -1,0 +1,41 @@
+assistant:
+  name: "Example Assistant"
+  scope_message: "I can run unit tests and answer coverage questions for You/We apps."
+entities:
+  app:
+    LaunchpadUI: ["launchpadui"]
+    YouTravelUI: ["youtravelui"]
+    YouOperateUI: ["youoperateui"]
+    YouBookUI: ["youbookui"]
+    YouDriveUI: ["youdriveui"]
+    YouDriveAdminUI: ["youdriveadminui"]
+    YouCertUI: ["youcertui"]
+    YouApplyUI: ["youapplyui"]
+    CoreUI: ["wecore", "we core", "core", "coreui"]
+    "WeCertNEMT-UI": ["wecertnemt-ui"]
+    WeTrackUI: ["wetrackui"]
+    CertUI: ["certui"]
+    CommonUI: ["we common", "common", "commonui"]
+    TravelmateWeUI: ["travelmateweui"]
+    BatchSchedulingAgentUI: ["batchschedulingagentui"]
+    FrameworkUI: ["frameworkui"]
+    DriverCom: ["drivercom"]
+  group:
+    you: ["you apps", "you group"]
+    we: ["we apps", "we group"]
+tools:
+  - name: run_unit_tests
+    description: Run Jest unit tests with coverage for one app
+    params:
+      app: { entity: app, required: true }
+    confirm: folder
+  - name: get_coverage
+    description: Coverage numbers for one app from the Super Dashboard
+    params:
+      app: { entity: app, required: true }
+      metric: { enum: [lines, statements, branches, all], default: all }
+    answer_template: "{app}: {covered} / {total} {metric} covered ({pct}%)"
+  - name: get_test_totals
+    description: Unit test totals for a group of apps or all apps
+    params:
+      group: { entity: group, required: false }

@@ -1,0 +1,290 @@
+[
+  {
+    "message": "execute we common test",
+    "expect": {
+      "type": "tool_call",
+      "tool": "run_unit_tests",
+      "params": {
+        "app": "CommonUI"
+      }
+    }
+  },
+  {
+    "message": "run unit tests for CoreUI",
+    "expect": {
+      "type": "tool_call",
+      "tool": "run_unit_tests",
+      "params": {
+        "app": "CoreUI"
+      }
+    }
+  },
+  {
+    "message": "run tests for wecore",
+    "expect": {
+      "type": "tool_call",
+      "tool": "run_unit_tests",
+      "params": {
+        "app": "CoreUI"
+      }
+    }
+  },
+  {
+    "message": "please run the jest tests of framework ui",
+    "expect": {
+      "type": "tool_call",
+      "tool": "run_unit_tests",
+      "params": {
+        "app": "FrameworkUI"
+      }
+    }
+  },
+  {
+    "message": "start unit tests on YouTravelUI",
+    "expect": {
+      "type": "tool_call",
+      "tool": "run_unit_tests",
+      "params": {
+        "app": "YouTravelUI"
+      }
+    }
+  },
+  {
+    "message": "test drivercom",
+    "expect": {
+      "type": "tool_call",
+      "tool": "run_unit_tests",
+      "params": {
+        "app": "DriverCom"
+      }
+    }
+  },
+  {
+    "message": "can you execute tests for launchpad",
+    "expect": {
+      "type": "tool_call",
+      "tool": "run_unit_tests",
+      "params": {
+        "app": "LaunchpadUI"
+      }
+    }
+  },
+  {
+    "message": "run the unit tests",
+    "expect": {
+      "type": "clarify"
+    }
+  },
+  {
+    "message": "total number of lines cover in wecore",
+    "expect": {
+      "type": "tool_call",
+      "tool": "get_coverage",
+      "params": {
+        "app": "CoreUI",
+        "metric": "lines"
+      }
+    }
+  },
+  {
+    "message": "what is the branch coverage of CommonUI",
+    "expect": {
+      "type": "tool_call",
+      "tool": "get_coverage",
+      "params": {
+        "app": "CommonUI",
+        "metric": "branches"
+      }
+    }
+  },
+  {
+    "message": "statement coverage for we track",
+    "expect": {
+      "type": "tool_call",
+      "tool": "get_coverage",
+      "params": {
+        "app": "WeTrackUI",
+        "metric": "statements"
+      }
+    }
+  },
+  {
+    "message": "show coverage for YouBookUI",
+    "expect": {
+      "type": "tool_call",
+      "tool": "get_coverage",
+      "params": {
+        "app": "YouBookUI",
+        "metric": "all"
+      }
+    }
+  },
+  {
+    "message": "how many lines are covered in core",
+    "expect": {
+      "type": "tool_call",
+      "tool": "get_coverage",
+      "params": {
+        "app": "CoreUI",
+        "metric": "lines"
+      }
+    }
+  },
+  {
+    "message": "coverage of cert ui",
+    "expect": {
+      "type": "tool_call",
+      "tool": "get_coverage",
+      "params": {
+        "app": "CertUI",
+        "metric": "all"
+      }
+    }
+  },
+  {
+    "message": "lines covered in TravelmateWeUI",
+    "expect": {
+      "type": "tool_call",
+      "tool": "get_coverage",
+      "params": {
+        "app": "TravelmateWeUI",
+        "metric": "lines"
+      }
+    }
+  },
+  {
+    "message": "give me the coverage numbers for you drive",
+    "expect": {
+      "type": "tool_call",
+      "tool": "get_coverage",
+      "params": {
+        "app": "YouDriveUI",
+        "metric": "all"
+      }
+    }
+  },
+  {
+    "message": "how many unit tests in we apps",
+    "expect": {
+      "type": "tool_call",
+      "tool": "get_test_totals",
+      "params": {
+        "group": "we"
+      }
+    }
+  },
+  {
+    "message": "total unit tests in you apps",
+    "expect": {
+      "type": "tool_call",
+      "tool": "get_test_totals",
+      "params": {
+        "group": "you"
+      }
+    }
+  },
+  {
+    "message": "how many unit tests are there across all apps",
+    "expect": {
+      "type": "tool_call",
+      "tool": "get_test_totals",
+      "params": {}
+    }
+  },
+  {
+    "message": "count of failed and passed tests for we apps",
+    "expect": {
+      "type": "tool_call",
+      "tool": "get_test_totals",
+      "params": {
+        "group": "we"
+      }
+    }
+  },
+  {
+    "message": "unit test totals",
+    "expect": {
+      "type": "tool_call",
+      "tool": "get_test_totals",
+      "params": {}
+    }
+  },
+  {
+    "message": "write a react component for a login page",
+    "expect": {
+      "type": "out_of_scope"
+    }
+  },
+  {
+    "message": "what's the weather in Stockholm",
+    "expect": {
+      "type": "out_of_scope"
+    }
+  },
+  {
+    "message": "delete the CoreUI repository",
+    "expect": {
+      "type": "out_of_scope"
+    }
+  },
+  {
+    "message": "write a jest test for my utils file",
+    "expect": {
+      "type": "out_of_scope"
+    }
+  },
+  {
+    "message": "tell me a joke",
+    "expect": {
+      "type": "out_of_scope"
+    }
+  },
+  {
+    "message": "push my changes to git",
+    "expect": {
+      "type": "out_of_scope"
+    }
+  },
+  {
+    "message": "which files have the lowest coverage?",
+    "expect": {
+      "type": "answer"
+    },
+    "seed": true
+  },
+  {
+    "message": "how many tests failed?",
+    "expect": {
+      "type": "answer"
+    },
+    "seed": true
+  },
+  {
+    "message": "what was the line coverage?",
+    "expect": {
+      "type": "answer"
+    },
+    "seed": true
+  },
+  {
+    "message": "write a jest test for the lowest coverage file",
+    "seed": true,
+    "expect": {
+      "type": "out_of_scope"
+    }
+  },
+  {
+    "message": "refactor the failing test into a React component",
+    "seed": true,
+    "expect": {
+      "type": "out_of_scope"
+    }
+  },
+  {
+    "message": "write a function that sorts these results",
+    "seed": true,
+    "expect": {
+      "type": "out_of_scope"
+    }
+  }
+]

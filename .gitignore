@@ -1,0 +1,13 @@
+# Assets
+assets/
+
+# graphify knowledge graph output
+graphify-out/
+
+# Dependencies and downloaded model files
+node_modules/
+models/
+
+# Maintainer-local instructions
+CLAUDE.local.md
+.superpowers/

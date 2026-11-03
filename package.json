@@ -1,0 +1,23 @@
+{
+  "name": "ai-assistant",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node scripts/launcher.mjs",
+    "serve": "node packages/server/src/index.js --config server.config.yaml",
+    "test": "node --test \"packages/*/test/**/*.test.js\" \"scripts/test/*.test.mjs\"",
+    "setup:models": "node scripts/setup-models.mjs",
+    "eval": "node packages/server/eval/run.js"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amir-qayyum-khan/ai-assistant.git"
+  }
+}

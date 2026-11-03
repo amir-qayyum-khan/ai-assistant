@@ -1,0 +1,17 @@
+{
+  "attribution": { "commit": "", "pr": "" },
+  "includeCoAuthoredBy": false,
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          { "type": "command", "if": "Bash(git commit *)", "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/post-git.sh\"", "timeout": 300, "statusMessage": "Updating graphify graph..." },
+          { "type": "command", "if": "Bash(git push *)", "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/post-git.sh\"", "timeout": 300, "statusMessage": "Updating graphify graph..." },
+          { "type": "command", "if": "PowerShell(git commit *)", "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/post-git.sh\"", "timeout": 300, "statusMessage": "Updating graphify graph..." },
+          { "type": "command", "if": "PowerShell(git push *)", "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/post-git.sh\"", "timeout": 300, "statusMessage": "Updating graphify graph..." }
+        ]
+      }
+    ]
+  }
+}
